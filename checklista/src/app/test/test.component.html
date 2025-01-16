@@ -1,4 +1,4 @@
-<p>{{stringInterpolation}}</p>
+<!-- <p>{{stringInterpolation}}</p>
 
 <button [disabled]="isDisabled">Botão 2</button>
 <br>
@@ -9,4 +9,16 @@
 
 <label>2</label>
 <input [(ngModel)]="myBindingProperty"/>
-<span>{{myBindingProperty}}</span>
+<span>{{myBindingProperty}}</span> -->
+
+<div style="margin: 20px; border: 3px solid black">
+    <h1 *ngIf="showTitle">Isso é um teste</h1>
+
+    <button (click)="changeTitleDisplayStatus()">Exibir título</button>
+</div>
+
+<div style="margin: 20px; border: 3px solid black">
+    <ul>
+        <li *ngFor="let item of items" [ngClass]="item.id % 2 ? 'style-1' : 'style-2'">{{item.description}}</li>
+    </ul>
+</div>
