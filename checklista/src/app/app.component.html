@@ -1,5 +1,34 @@
 <app-header></app-header>
 
-<app-footer></app-footer>
+<div class="main-container">
 
-<router-outlet></router-outlet>
+    <mat-sidenav-container>
+
+        <mat-sidenav #sidenav>
+            <mat-list class="w-10p">
+                <mat-list-item>
+                    <a href="/"><mat-icon>home</mat-icon>Home</a>
+                </mat-list-item>
+            </mat-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
+            <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
+            <p>Events:</p>
+            <div class="example-events">
+                 
+                <div *ngFor= "let e of events; track e">{{e}}</div>
+                
+            </div> 
+        </mat-sidenav-content>
+
+    </mat-sidenav-container>
+    <router-outlet></router-outlet>
+
+</div>
+
+
+
+
+<app-footer></app-footer>
