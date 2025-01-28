@@ -7,18 +7,22 @@
         <mat-sidenav #sidenav>
             <mat-list class="w-10p">
                 <mat-list-item>
-                    <a href="/"><mat-icon>home</mat-icon>Home</a>
+                    <a href="/"><mat-icon class="icon">home</mat-icon>Home</a>
                 </mat-list-item>
             </mat-list>
         </mat-sidenav>
 
         <mat-sidenav-content>
+
             <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
             <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
             <p>Events:</p>
             <div class="example-events">
                  
-                <div *ngFor= "let e of events; track e">{{e}}</div>
+                <div *ngFor="let e of events">
+                    {{ e }}
+                  </div>
+                  
                 
             </div> 
         </mat-sidenav-content>

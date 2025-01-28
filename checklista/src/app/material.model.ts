@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -11,14 +13,18 @@ import {MatListModule} from '@angular/material/list';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    FormsModule,
+    CommonModule
   ],
   exports:[
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    FormsModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    CommonModule
   ]
 })
 export class MaterialModule {}
