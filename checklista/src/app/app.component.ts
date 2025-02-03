@@ -7,12 +7,13 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, FormsModule, HeaderComponent, FooterComponent, MatSidenavModule, MatListModule, MatIconModule, CommonModule],
+  imports: [RouterOutlet, FormsModule, HeaderComponent, FooterComponent, MatSidenavModule, MatListModule, MatIconModule, CommonModule, MatCheckboxModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

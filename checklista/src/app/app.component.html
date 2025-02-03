@@ -2,19 +2,22 @@
 
 <div class="main-container">
 
-    <mat-sidenav-container>
+    <mat-sidenav-container class="sidenav-container">
 
-        <mat-sidenav #sidenav>
-            <mat-list class="w-10p">
+        <mat-sidenav #sidenav class="w-10p">
+            <mat-list>
                 <mat-list-item>
-                    <a href="/"><mat-icon class="icon">home</mat-icon>Home</a>
+                    <mat-icon>home</mat-icon>
+                    <span class="ml-15">
+                      <a (click)="sidenav.toggle()">Home</a>
+                    </span>                
                 </mat-list-item>
             </mat-list>
         </mat-sidenav>
 
         <mat-sidenav-content>
 
-            <p><mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox></p>
+            <mat-checkbox [(ngModel)]="opened">sidenav.opened</mat-checkbox>
             <p><button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button></p>
             <p>Events:</p>
             <div class="example-events">
@@ -25,14 +28,18 @@
                   
                 
             </div> 
+            
+            <router-outlet></router-outlet>
+
         </mat-sidenav-content>
 
     </mat-sidenav-container>
-    <router-outlet></router-outlet>
+    
+
+    <app-footer></app-footer>
 
 </div>
 
 
 
 
-<app-footer></app-footer>
