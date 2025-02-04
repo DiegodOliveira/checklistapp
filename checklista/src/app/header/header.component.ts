@@ -9,13 +9,15 @@ import { MatSidenav } from '@angular/material/sidenav';
   selector: 'app-header',
   imports: [MatToolbarModule,
     MatButtonModule,
-    MatIconModule],
+    MatIconModule,
+    ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
 
-  @Input() sidenav!: MatSidenav
+  @Input() 
+  public sidenav!: MatSidenav;
 
   constructor() {}
 

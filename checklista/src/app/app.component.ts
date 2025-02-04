@@ -19,7 +19,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 })
 export class AppComponent {
 
-  public events: string[] = ['Event 1', 'Event 2', 'Event 3'];
   public opened: boolean = false;
 
 }
