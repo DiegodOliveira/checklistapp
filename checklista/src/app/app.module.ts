@@ -9,6 +9,7 @@ import { HeaderComponent } from "./header/header.component";
 import { FooterComponent } from "./footer/footer.component";
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
+import { AppRoutingModule } from './app-routing.module';
 
 
 
@@ -27,6 +28,7 @@ import {MatListModule} from '@angular/material/list';
     , MatIconModule
     , RouterOutlet
     , CategoryComponent
+    , AppRoutingModule
   ]
 })
 export class AppModule { }
