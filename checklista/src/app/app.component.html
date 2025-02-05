@@ -8,12 +8,23 @@
         <mat-sidenav #sidenav class="w-10p">
 
             <mat-list>
+
                 <mat-list-item>
                     <mat-icon class="icon">home</mat-icon>
                     <span class="ml-15">
-                      <a (click)="sidenav.toggle()">Home</a>
+                      <a [routerLink]="['/']">Home</a>
                     </span>                
                 </mat-list-item>
+
+                <mat-divider></mat-divider>
+
+                <mat-list-item>
+                    <mat-icon class="icon">format_list_bulleted</mat-icon>
+                    <span class="ml-15">
+                      <a [routerLink]="['/categoria']" (click)="sidenav.toggle()">Category</a>
+                    </span>                
+                </mat-list-item>
+
             </mat-list>
             
         </mat-sidenav>

@@ -7,6 +7,8 @@ import {MatListModule} from '@angular/material/list';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox'
+import { MatDividerModule } from '@angular/material/divider';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     MatListModule,
     FormsModule,
     CommonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDividerModule,
+    
   ],
   exports:[
     MatToolbarModule,
@@ -27,7 +31,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
     MatSidenavModule,
     MatListModule,
     CommonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    
   ]
 })
 export class MaterialModule {}

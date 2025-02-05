@@ -21,3 +21,8 @@ a:hover{
     font-size: 18px;
 }
 
+.mat-sidenav-content{
+    height: 400px;
+}
+
+
