@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatDividerModule } from '@angular/material/divider';
-import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports: [
@@ -21,7 +20,6 @@ import { AppRoutingModule } from './app-routing.module';
     CommonModule,
     MatCheckboxModule,
     MatDividerModule,
-    
   ],
   exports:[
     MatToolbarModule,
@@ -32,7 +30,6 @@ import { AppRoutingModule } from './app-routing.module';
     MatListModule,
     CommonModule,
     MatCheckboxModule,
-    
   ]
 })
 export class MaterialModule {}
