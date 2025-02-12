@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -10,3 +11,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ml-15{
     margin-left: 15px;
 }
+
+.w-100{
+    width: 100%;
+}
+
+.m-20{
+    margin: 20px;
+}
+
+.mr-10{
+    margin-right: 10px !important;
+}
+

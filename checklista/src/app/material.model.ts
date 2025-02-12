@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatDividerModule } from '@angular/material/divider';
+import { MatCardModule } from '@angular/material/card'
+import { MatTableModule } from '@angular/material/table'
 
 @NgModule({
   imports: [
@@ -20,6 +22,8 @@ import { MatDividerModule } from '@angular/material/divider';
     CommonModule,
     MatCheckboxModule,
     MatDividerModule,
+    MatCardModule,
+    MatTableModule
   ],
   exports:[
     MatToolbarModule,
@@ -30,6 +34,8 @@ import { MatDividerModule } from '@angular/material/divider';
     MatListModule,
     CommonModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}
