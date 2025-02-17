@@ -31,20 +31,21 @@ export class DialogComponent implements OnInit{
     }
   }
 
-  public dialogMsg = 'Deseja continuar com esta ação?';
-  public leftButtonLabel= 'Cancelar';
-  public rightButtonLabel = 'Ok';
-
   ngOnInit(): void {
     
   }
+  
+  public dialogMsg = 'Deseja continuar com esta ação?';
+  public leftButtonLabel = 'Cancelar';
+  public rightButtonLabel = 'Ok';
+
 
   public clickLeftButton(){
-    
+    this.dialogRef.close(false);
   }
   
   public clickRightButton(){
-
+    this.dialogRef.close(true);
   }
 
 }

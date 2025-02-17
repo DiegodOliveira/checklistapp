@@ -4,6 +4,8 @@ import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { Category } from '../_models/category';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 
 const CATEGORY_DATA = [
@@ -25,7 +27,7 @@ export class CategoryComponent implements OnInit {
   public dataSource: Category[] = CATEGORY_DATA;
 
 
-  constructor(){}
+  constructor(private dialog: MatDialog){}
 
   ngOnInit(): void {
     
@@ -36,7 +38,15 @@ export class CategoryComponent implements OnInit {
   };
 
   public deleteCategory(category: Category){
-    console.log('delete category clicked')
+    this.dialog.open(DialogComponent, {disableClose: true, data: {dialoMsg: 'Você tem certerza que gostaria de apagar a categoria?', leftButtonLabel: 'Não', rightButtonLabel: 'Sim'}}).afterClosed().subscribe(
+      resp => {
+        if(resp){
+          console.log('Categoria apagada com sucesso');
+        }else{
+          console.log('Categoria não apagada');
+        }
+      }
+    )
   };
 
   public createNewCategory(){
