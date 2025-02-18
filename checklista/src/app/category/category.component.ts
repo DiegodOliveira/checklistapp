@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { Category } from '../_models/category';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { CategoryEdityComponent } from '../category-edity/category-edity.component';
 
 
 const CATEGORY_DATA = [
@@ -33,8 +34,15 @@ export class CategoryComponent implements OnInit {
     
   }
 
-  public editCategory(category: Category){
+  public editCategory(inputCategory: Category){
     console.log('edit category clicked')
+
+    this.dialog.open(CategoryEdityComponent, {disableClose: true, data: {editableCategory: inputCategory}}).afterClosed().subscribe(
+      resp => {
+        console.log('Modal editar fechada');
+      }
+    )
+
   };
 
   public deleteCategory(category: Category){
