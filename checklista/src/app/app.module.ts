@@ -10,7 +10,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { RouterLink } from '@angular/router';
-import { CategoryEdityComponent } from './category-edity/category-edity.component';
+import { CategoryEdityComponent } from './category-edit/category-edit.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 
 
