@@ -1,10 +1,11 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Category } from '../_models/category';
+import { CategoryFormComponent } from "../category-form/category-form.component";
 
 @Component({
   selector: 'app-category-edit',
-  imports: [],
+  imports: [CategoryFormComponent],
   templateUrl: './category-edit.component.html',
   styleUrl: './category-edit.component.css'
 })
@@ -27,6 +28,10 @@ export class CategoryEditComponent implements OnInit{
 
   ngOnInit(): void {
     
+  }
+
+  public closeModalWindow($event: any){
+    if($event) this.dialogueRef.close();
   }
 
 }

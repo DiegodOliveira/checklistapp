@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 // import { MatCardModule } from '@angular/material/card'
 // import { MatButtonModule } from '@angular/material/button';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MaterialModule } from "../material.model";
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Category } from '../_models/category';
 
 
 @Component({
@@ -16,9 +17,14 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CategoryFormComponent implements OnInit {
 
-  public actionName = 'Editar'
+
+  @Input() public actionName="Editar";
+
+  @Input() public editableCategory!: Category;
+
   public categoryForm: FormGroup;
 
+  @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private formBuilder: FormBuilder){
 
@@ -36,10 +42,12 @@ export class CategoryFormComponent implements OnInit {
 
   public cancel(){
     console.log('Cancelar clicado');
+    this.closeModelEventEmitter.emit(false);
   }
 
   public save(){
     console.log('salvar clicado');
+    this.closeModelEventEmitter.emit(true);
     
   }
 
