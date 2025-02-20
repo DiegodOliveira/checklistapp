@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 // import { MatInputModule } from '@angular/material/input';
 
 import { MaterialModule } from "../material.model";
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({

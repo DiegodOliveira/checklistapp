@@ -35,9 +35,8 @@ export class CategoryComponent implements OnInit {
   }
 
   public editCategory(inputCategory: Category){
-    console.log('edit category clicked')
-
-    this.dialog.open(CategoryEditComponent, {disableClose: true, data: {editableCategory: inputCategory, actionName: 'Editar'}}).afterClosed().subscribe(
+    
+    this.dialog.open(CategoryEditComponent, {disableClose: true, data : {editableCategory: inputCategory}}).afterClosed().subscribe(
       resp => {
         console.log('Modal editar fechada');
       }
