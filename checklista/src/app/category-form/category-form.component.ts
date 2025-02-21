@@ -1,11 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-// import { MatCardModule } from '@angular/material/card'
-// import { MatButtonModule } from '@angular/material/button';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { MatInputModule } from '@angular/material/input';
-
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild  } from '@angular/core';
 import { MaterialModule } from "../material.model";
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Category } from '../_models/category';
 
 
@@ -18,26 +13,31 @@ import { Category } from '../_models/category';
 export class CategoryFormComponent implements OnInit {
 
 
-  @Input() public actionName="Editar";
+  @Input() public actionName='Editar';
 
-  @Input() public editableCategory!: Category;
-
-  public categoryForm: FormGroup;
+  public categoryForm!: FormGroup;
 
   @Output() closeModelEventEmitter: EventEmitter<boolean> = new EventEmitter<boolean>();
+  
+  @Input() public editableCategory!: Category;
+
+  @ViewChild('categoryFormDirective') public categoryFormDirective!: FormGroupDirective;
+
+  public isFormReady = false;
 
   constructor(private formBuilder: FormBuilder){
-
-    this.categoryForm = this.formBuilder.group({
-      name: 'Diego',
-      age: '21',
-      profession: 'Programador'
-    });
 
   }
 
   ngOnInit(): void {
     
+    this.categoryForm = this.formBuilder.group({
+      name: [this.editableCategory != null ? this.editableCategory.name : '', Validators.required]
+      
+    });
+
+    this.isFormReady = true;
+
   }
 
   public cancel(){
