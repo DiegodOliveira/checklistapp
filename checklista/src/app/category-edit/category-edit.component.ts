@@ -21,7 +21,7 @@ export class CategoryEditComponent implements OnInit{
     }
 
     if(dialogData.actionName != null){
-
+      this.actionName = dialogData.actionName;
     }
 
   }
