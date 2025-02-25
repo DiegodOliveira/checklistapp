@@ -33,16 +33,13 @@ export class CategoryFormComponent implements OnInit {
     
     this.categoryForm = this.formBuilder.group({
       name: [this.editableCategory != null ? this.editableCategory.name : '', Validators.required]
-      
     });
-
     this.isFormReady = true;
-
   }
 
   public cancel(){
     console.log('Cancelar clicado');
-    this.closeModelEventEmitter.emit(false);
+    this.closeModelEventEmitter.emit(true);
   }
 
   public save(){
