@@ -9,7 +9,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 
 
-const CATEGORY_DATA = [
+export const CATEGORY_DATA = [
   {name: 'Educação', guid: 'aaa-bbb-ccc-ddd'},
   {name: 'Saúde', guid: 'aaa-bbb-ccc-ddd'},
   {name: 'Trabalho', guid: 'aaa-bbb-ccc-ddd'},
@@ -58,6 +58,12 @@ export class CategoryComponent implements OnInit {
 
   public createNewCategory(){
     console.log('create new category clicked')
+
+
+    this.dialog.open(CategoryEditComponent, { disableClose: true, data: {actionName: 'Criar'} 
+    }).afterClosed().subscribe(resp => {
+      console.log("Modal editar fechada");
+    })
   }
 
 }

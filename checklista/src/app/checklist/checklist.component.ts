@@ -5,7 +5,8 @@ import { CATEGORY_DATA } from '../category/category.component';
 
 export const CHECKLIST_DATA = [
 
-  { guid: '', completed: false, description: 'exemplo qualquer', deadline: Date.now(), postDate: Date.now(), category: CATEGORY_DATA.find(x => x.name == '') }
+  { guid: 'aaa-bbb-ccc-ddd', completed: false, description: 'Ir ao oftamologista', deadline: Date.now(), postDate: Date.now(), category: CATEGORY_DATA.find(x => x.name == 'Saúde') },
+  { guid: 'aaa-bbb-ccc-ddd', completed: true, description: 'Reunião com gerente regional', deadline: Date.now(), postDate: Date.now(), category: CATEGORY_DATA.find(x => x.name == 'Trabalho') }
 
 ]
 
@@ -16,6 +17,10 @@ export const CHECKLIST_DATA = [
   styleUrl: './checklist.component.css'
 })
 export class ChecklistComponent implements OnInit {
+
+  public dataSource = CHECKLIST_DATA;
+
+  public displayedColumns: string[] = ['id','completed', 'description', 'deadline', 'postDate','category', 'actions'];
 
   constructor(){}
 
