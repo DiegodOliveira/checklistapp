@@ -40,8 +40,8 @@ export class ChecklistComponent implements OnInit {
   public updateChecklistItem(checklistItem: ChecklistItem){
     console.log("atualizando item da checklist");
 
-    this.dialog.open(DialogComponent, {
-      disableClose: true, data: {actionName: 'Criar'},
+    this.dialog.open(ChecklistItem, {
+      disableClose: true, data: { updatableChecklistItem: checklistItem, actionName: 'Editar'},
     }).afterClosed().subscribe( resp => {
       console.log('Fechando modal de update');
       
