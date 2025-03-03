@@ -1,7 +1,9 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MaterialModule } from '../material.model';
 import { ChecklistItem } from '../_models/checklist_item';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { CATEGORY_DATA } from '../category/category.component';
+import { Category } from '../_models/category';
 
 @Component({
   selector: 'app-checklist-form',
@@ -15,6 +17,10 @@ export class ChecklistFormComponent implements OnInit{
   @Input() public checklistItem!: ChecklistItem;
   @Output() public formCloseEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  @ViewChild(FormGroupDirective) checklistFormGroupDirective!: FormGroupDirective;
+
+  public categories: Category[] = CATEGORY_DATA;
+
   public checklistForm!: FormGroup;
 
   constructor(private formBuilder: FormBuilder){}
@@ -24,10 +30,27 @@ export class ChecklistFormComponent implements OnInit{
     this.checklistForm = this.formBuilder.group(
       {
         completed: [this.checklistItem != null ? this.checklistItem.completed : false, Validators.required],
-        description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required]
+        description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required],
+        deadline: [this.checklistItem != null ? this.checklistItem.deadline: new Date(), Validators.required],
+        category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required]
       }
     )
+  }
 
+  public clearForm(){
+    this.checklistForm.reset();
+    this.checklistFormGroupDirective.resetForm();
+  }
+
+  public closeForm(){
+
+  }
+
+  public save(){
+
+  }
+
+  public cancel(){
 
   }
 

@@ -34,7 +34,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports:[
     MatToolbarModule,
@@ -51,7 +52,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatInputModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class MaterialModule {}

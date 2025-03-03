@@ -5,6 +5,7 @@ import { CATEGORY_DATA } from '../category/category.component';
 import { ChecklistItem } from '../_models/checklist_item';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ChecklistEditComponent } from '../checklist-edit/checklist-edit.component';
 
 
 export const CHECKLIST_DATA = [
@@ -40,7 +41,7 @@ export class ChecklistComponent implements OnInit {
   public updateChecklistItem(checklistItem: ChecklistItem){
     console.log("atualizando item da checklist");
 
-    this.dialog.open(ChecklistItem, {
+    this.dialog.open(ChecklistEditComponent, {
       disableClose: true, data: { updatableChecklistItem: checklistItem, actionName: 'Editar'},
     }).afterClosed().subscribe( resp => {
       console.log('Fechando modal de update');

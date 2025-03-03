@@ -37,3 +37,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: whit
 .w-300{
     width: 300px;
 }
+
+.w-450{
+    width: 450px;
+}
