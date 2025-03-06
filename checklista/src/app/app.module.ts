@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { MaterialModule } from './material.model';
@@ -14,7 +14,9 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 
 
-
+import localePt from '@angular/common/locales/pt'
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt)
 
 
 
@@ -36,6 +38,9 @@ import { CategoryFormComponent } from './category-form/category-form.component';
     , CategoryEditComponent
     , CategoryFormComponent
     , NgModule
+  ],
+  providers: [
+    { provide:  LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class AppModule { }
