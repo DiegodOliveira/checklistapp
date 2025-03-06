@@ -25,9 +25,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: whit
 }
 
 .flx-center-row{
-    display: flex;
+    display: flex !important;
     flex-direction: row;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 .flx-evly{
@@ -40,4 +40,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: whit
 
 .w-450{
     width: 450px;
+}
+
+.flx-clmn{
+    display: flex;
+    flex-direction: column;
 }

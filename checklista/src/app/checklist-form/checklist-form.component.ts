@@ -42,16 +42,12 @@ export class ChecklistFormComponent implements OnInit{
     this.checklistFormGroupDirective.resetForm();
   }
 
-  public closeForm(){
-
-  }
-
   public save(){
-
+    this.formCloseEvent.emit(true);
   }
 
   public cancel(){
-
+    this.formCloseEvent.emit(false)
   }
 
 }
