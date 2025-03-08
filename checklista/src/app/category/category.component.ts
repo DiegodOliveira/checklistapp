@@ -7,14 +7,8 @@ import { Category } from '../_models/category';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
+import { CategoryService } from '../services/category.service';
 
-
-export const CATEGORY_DATA = [
-  {name: 'Educação', guid: 'aaa-bbb-ccc-ddd'},
-  {name: 'Saúde', guid: 'aaa-bbb-ccc-ddd'},
-  {name: 'Trabalho', guid: 'aaa-bbb-ccc-ddd'},
-  {name: 'Outros', guid: 'aaa-bbb-ccc-ddd'}
-]
 
 @Component({
   selector: 'app-category',
@@ -25,13 +19,17 @@ export const CATEGORY_DATA = [
 export class CategoryComponent implements OnInit {
 
   public displayedColumns: string[] = ['id', 'name', 'actions'];
-  public dataSource: Category[] = CATEGORY_DATA;
+  public dataSource: Category[] = [];
 
 
-  constructor(private dialog: MatDialog){}
+  constructor(private dialog: MatDialog, private categoryService: CategoryService){}
 
   ngOnInit(): void {
-    
+    this.categoryService.getAllCategories().subscribe(
+      (resp: Category[]) => {
+        this.dataSource = resp;
+      }
+    )
   }
 
   public editCategory(inputCategory: Category){

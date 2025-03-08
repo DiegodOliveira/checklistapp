@@ -2,8 +2,8 @@ import { Component, Input, OnInit, Output, EventEmitter, ViewChild } from '@angu
 import { MaterialModule } from '../material.model';
 import { ChecklistItem } from '../_models/checklist_item';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { CATEGORY_DATA } from '../category/category.component';
 import { Category } from '../_models/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-checklist-form',
@@ -19,14 +19,25 @@ export class ChecklistFormComponent implements OnInit{
 
   @ViewChild(FormGroupDirective) checklistFormGroupDirective!: FormGroupDirective;
 
-  public categories: Category[] = CATEGORY_DATA;
+  public categories: Category[] = [];
 
   public checklistForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder){}
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService){}
 
   ngOnInit(): void {
+
+    this.categoryService.getAllCategories().subscribe(
+     ( resp: Category[]) => {
+
+      this.categories = resp;
+      this.createForm();
+      }
+    )
     
+  }
+
+  private createForm(){
     this.checklistForm = this.formBuilder.group(
       {
         completed: [this.checklistItem != null ? this.checklistItem.completed : false, Validators.required],
