@@ -31,7 +31,7 @@ export class CategoryEditComponent implements OnInit{
   }
 
   public closeModalWindow($event: any){
-    if($event) this.dialogueRef.close();
+    if($event) this.dialogueRef.close($event);
   }
 
 }

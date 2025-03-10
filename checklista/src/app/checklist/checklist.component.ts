@@ -6,6 +6,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ChecklistEditComponent } from '../checklist-edit/checklist-edit.component';
 import { ChecklistService } from '../services/checklist.service';
+import { SnackBarService } from '../services/snack-bar.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ChecklistComponent implements OnInit {
 
   public displayedColumns: string[] = ['id','completed', 'description', 'deadline', 'postDate','category', 'actions'];
 
-  constructor(private dialog: MatDialog, private checklistService: ChecklistService){}
+  constructor(private dialog: MatDialog, private checklistService: ChecklistService, private snackBarService: SnackBarService){}
 
   ngOnInit(): void{
 
@@ -45,6 +46,10 @@ export class ChecklistComponent implements OnInit {
       disableClose: true, data: { updatableChecklistItem: checklistItem, actionName: 'Editar'},
     }).afterClosed().subscribe( resp => {
       console.log('Fechando modal de update');
+
+      if(resp){
+        this.snackBarService.showSnackBar('Item do checklist editado com sucesso', 'OK')
+      }
       
     })
     
@@ -57,6 +62,10 @@ export class ChecklistComponent implements OnInit {
       msg: 'Você deseja realmente apagar esse item?', leftButtonLabel: 'Cancelar', rightButtonLabel: 'Ok'
     }}).afterClosed().subscribe(resp => {
       console.log('Janela modal confirmar apagar fechada');
+
+      if(resp){
+        this.snackBarService.showSnackBar('Item do checklist apagado com sucesso', 'OK')
+      }
       
     })
 
@@ -69,6 +78,10 @@ export class ChecklistComponent implements OnInit {
       disableClose: true, data: {actionName: 'Criar'},
     }).afterClosed().subscribe( resp => {
       console.log('Fechando modal de criação');
+
+      if(resp){
+        this.snackBarService.showSnackBar('Item do checklist criado com sucesso', 'OK')
+      }
       
     })
   }

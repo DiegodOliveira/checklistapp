@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { CategoryService } from '../services/category.service';
+import { SnackBarService } from '../services/snack-bar.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class CategoryComponent implements OnInit {
   public dataSource: Category[] = [];
 
 
-  constructor(private dialog: MatDialog, private categoryService: CategoryService){}
+  constructor(private dialog: MatDialog, private categoryService: CategoryService, private snackBarService: SnackBarService){}
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
@@ -36,7 +37,9 @@ export class CategoryComponent implements OnInit {
     
     this.dialog.open(CategoryEditComponent, {disableClose: true, data : {editableCategory: inputCategory}}).afterClosed().subscribe(
       resp => {
-        console.log('Modal editar fechada');
+        if(resp){
+          this.snackBarService.showSnackBar('categoria editada com sucesso', 'OK');
+        }
       }
     )
 
@@ -46,9 +49,7 @@ export class CategoryComponent implements OnInit {
     this.dialog.open(DialogComponent, {disableClose: true, data: {dialoMsg: 'Você tem certerza que gostaria de apagar a categoria?', leftButtonLabel: 'Não', rightButtonLabel: 'Sim'}}).afterClosed().subscribe(
       resp => {
         if(resp){
-          console.log('Categoria apagada com sucesso');
-        }else{
-          console.log('Categoria não apagada');
+          this.snackBarService.showSnackBar('categoria apagada com sucesso', 'OK');
         }
       }
     )
@@ -60,7 +61,9 @@ export class CategoryComponent implements OnInit {
 
     this.dialog.open(CategoryEditComponent, { disableClose: true, data: {actionName: 'Criar'} 
     }).afterClosed().subscribe(resp => {
-      console.log("Modal editar fechada");
+      if(resp){
+        this.snackBarService.showSnackBar('categoria editada com sucesso', 'OK');
+      }
     })
   }
 
