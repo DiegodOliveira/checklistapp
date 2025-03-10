@@ -1,19 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { MaterialModule } from '../material.model';
 import { RouterLink } from '@angular/router';
-import { CATEGORY_DATA } from '../category/category.component';
 import { ChecklistItem } from '../_models/checklist_item';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ChecklistEditComponent } from '../checklist-edit/checklist-edit.component';
+import { ChecklistService } from '../services/checklist.service';
 
-
-export const CHECKLIST_DATA = [
-
-  { guid: 'aaa-bbb-ccc-ddd', completed: false, description: 'Ir ao oftamologista', deadline: Date.now(), postDate: Date.now(), category: CATEGORY_DATA.find(x => x.name == 'Saúde') },
-  { guid: 'aaa-bbb-ccc-ddd', completed: true, description: 'Reunião com gerente regional', deadline: Date.now(), postDate: Date.now(), category: CATEGORY_DATA.find(x => x.name == 'Trabalho') }
-
-]
 
 @Component({
   selector: 'app-checklist',
@@ -23,13 +16,20 @@ export const CHECKLIST_DATA = [
 })
 export class ChecklistComponent implements OnInit {
 
-  public dataSource = CHECKLIST_DATA;
+  public dataSource: ChecklistItem[] = [];
 
   public displayedColumns: string[] = ['id','completed', 'description', 'deadline', 'postDate','category', 'actions'];
 
-  constructor(private dialog: MatDialog){}
+  constructor(private dialog: MatDialog, private checklistService: ChecklistService){}
 
   ngOnInit(): void{
+
+
+    this.checklistService.getAllChecklistItems().subscribe(
+    (resp: ChecklistItem[]) => {
+      this.dataSource = resp;
+    });
+  
 
   }
 
