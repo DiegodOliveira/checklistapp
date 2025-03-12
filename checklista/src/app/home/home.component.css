@@ -1,0 +1,22 @@
+.main-div{
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+
+.home-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(148, 20, 148);
+    border-radius: 100px;
+    width: 900px;
+}
+
+.home-title{
+    font-size: 30px !important;
+    font-weight: bold;
+    color: black;
+}
