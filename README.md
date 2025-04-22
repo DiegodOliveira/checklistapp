@@ -29,7 +29,7 @@ Este repositório contém o Front End de um projeto Fullstack atráves de um cur
     <img height="200" width="200" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/angular/angular-original-wordmark.svg" />
   </div>
 
-  <div align="right">
+  <div align="center">
    <img  height="300" width="300" src = "https://drive.google.com/uc?export=view&id=1ECBwkgG8rS3xwRbGgQQGrClIkg2UR1AL"/>
   </div>
 
