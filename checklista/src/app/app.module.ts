@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from './header/header.component.ts';
+import { HeaderComponent } from './header/header.component';
 import { MaterialModule } from './material.model';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
@@ -15,6 +15,8 @@ import { CategoryFormComponent } from './category-form/category-form.component';
 import { ChecklistComponent } from './checklist/checklist.component';
 import { ChecklistEditComponent } from './checklist-edit/checklist-edit.component';
 import { ChecklistFormComponent } from './checklist-form/checklist-form.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
+
 
 //configuring pt-BR locale
 import { LOCALE_ID, NgModule } from '@angular/core';
@@ -24,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localePt)
 
 @NgModule({
-declarations: [
+  declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -45,7 +47,11 @@ declarations: [
     FormsModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterLink,
+    RouterOutlet,
+    FooterComponent,
+    HeaderComponent
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' }

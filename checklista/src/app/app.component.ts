@@ -15,13 +15,13 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet, 
-    FormsModule
-    , HeaderComponent
-    , FooterComponent
-    , MatSidenavModule
-    , MatListModule,
-     MatIconModule,
+    RouterOutlet,
+    FormsModule,
+    HeaderComponent,
+    FooterComponent,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
     CommonModule,
     MatCheckboxModule,
     AppRoutingModule,
