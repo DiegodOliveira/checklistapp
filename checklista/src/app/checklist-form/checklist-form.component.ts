@@ -4,10 +4,13 @@ import { ChecklistItem } from '../_models/checklist_item';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Category } from '../_models/category';
 import { CategoryService } from '../services/category.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-checklist-form',
-  imports: [MaterialModule],
+  imports: [MaterialModule, FormsModule,
+    ReactiveFormsModule ],
   templateUrl: './checklist-form.component.html',
   styleUrl: './checklist-form.component.css'
 })

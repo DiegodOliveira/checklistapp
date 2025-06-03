@@ -2,11 +2,14 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild  } from '@ang
 import { MaterialModule } from "../material.model";
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Category } from '../_models/category';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 
 @Component({
   selector: 'app-category-form',
-  imports: [MaterialModule],
+  imports: [MaterialModule, FormsModule,
+    ReactiveFormsModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })

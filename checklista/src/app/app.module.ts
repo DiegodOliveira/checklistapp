@@ -18,7 +18,7 @@ import { ChecklistFormComponent } from './checklist-form/checklist-form.componen
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 
-//configuring pt-BR locale
+
 import { LOCALE_ID, NgModule } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
@@ -26,7 +26,18 @@ import { HttpClientModule } from '@angular/common/http';
 registerLocaleData(localePt)
 
 @NgModule({
-  declarations: [
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    RouterLink,
+    RouterOutlet,
+    FooterComponent,
+    HeaderComponent,
     AppComponent,
     HeaderComponent,
     FooterComponent,
@@ -39,23 +50,6 @@ registerLocaleData(localePt)
     ChecklistComponent,
     ChecklistEditComponent,
     ChecklistFormComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MaterialModule,
-    ReactiveFormsModule,
-    RouterLink,
-    RouterOutlet,
-    FooterComponent,
-    HeaderComponent
-  ],
-  providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
-  ],
-  bootstrap: [AppComponent]
+  ]
 })
 export class AppModule { }
