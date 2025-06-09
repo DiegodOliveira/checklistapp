@@ -3,7 +3,7 @@ import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient  } from '@angular/common/http';
 import { MaterialModule } from './app/material.model';
 import { LOCALE_ID, importProvidersFrom } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
@@ -15,8 +15,8 @@ registerLocaleData(localePt);
 
 bootstrapApplication(AppComponent, {
   providers: [
+    provideHttpClient(),
     importProvidersFrom(
-      HttpClientModule,
       MaterialModule
     ),
     provideRouter(routes),
