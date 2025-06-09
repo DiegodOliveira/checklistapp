@@ -3,13 +3,15 @@ import { MaterialModule } from "../material.model";
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Category } from '../_models/category';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 
 
 @Component({
   selector: 'app-category-form',
   imports: [MaterialModule, FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule, CommonModule],
   templateUrl: './category-form.component.html',
   styleUrl: './category-form.component.css'
 })

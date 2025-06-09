@@ -5,12 +5,13 @@ import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular
 import { Category } from '../_models/category';
 import { CategoryService } from '../services/category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-checklist-form',
   imports: [MaterialModule, FormsModule,
-    ReactiveFormsModule ],
+    ReactiveFormsModule, CommonModule ],
   templateUrl: './checklist-form.component.html',
   styleUrl: './checklist-form.component.css'
 })

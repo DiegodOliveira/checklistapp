@@ -7,11 +7,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChecklistEditComponent } from '../checklist-edit/checklist-edit.component';
 import { ChecklistService } from '../services/checklist.service';
 import { SnackBarService } from '../services/snack-bar.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-checklist',
-  imports: [MaterialModule, RouterLink ],
+  imports: [MaterialModule, RouterLink, CommonModule ],
   templateUrl: './checklist.component.html',
   styleUrl: './checklist.component.css'
 })
