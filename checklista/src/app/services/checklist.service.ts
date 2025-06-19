@@ -2,24 +2,32 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ChecklistItem } from '../_models/checklist_item';
 import { Category } from '../_models/category';
-
-
-export const CHECKLIST_DATA = [
-
-  { guid: 'aaa-bbb-ccc-ddd', completed: false, description: 'Ir ao oftamologista', deadline: new Date(), postDate: new Date(), category: {guid: 'aaaa-bbbb-cccc-dddd', name: 'Saúde'} },
-  { guid: 'aaa-bbb-ccc-ddd', completed: true, description: 'Reunião com gerente regional', deadline: new Date(), postDate: new Date(), category: {guid: 'aaaa-bbbb-cccc-dddd', name: 'Trabalho'} }
-
-]
+import { HttpClient } from '@angular/common/http';
+import { environment } from './enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChecklistService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
 
   public getAllChecklistItems(): Observable<ChecklistItem[]>{
-    return of(CHECKLIST_DATA);
+   return this.httpClient.get<ChecklistItem[]>(`${environment.apiBaseEndpointUrl}checklist-items`)
   }
+
+  public saveChecklistItems(checklistItem: ChecklistItem): Observable<string>{
+   return this.httpClient.post<string>(`${environment.apiBaseEndpointUrl}checklist-items`, checklistItem)
+  }
+
+  public updateAllChecklistItems(checklistItem: ChecklistItem): Observable<void>{
+   return this.httpClient.put<void>(`${environment.apiBaseEndpointUrl}checklist-items`, checklistItem)
+  }
+
+  public deleteChecklistItems(guid: string): Observable<void>{
+   return this.httpClient.delete<void>(`${environment.apiBaseEndpointUrl}checklist-items/${guid}`)
+  }
+
+  
 }
