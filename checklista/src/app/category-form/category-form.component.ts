@@ -50,17 +50,17 @@ export class CategoryFormComponent implements OnInit {
 
   public save(){
 
-    
-    this.clearForm();
-
-    this.closeModelEventEmitter.emit(true);
-
-
     if(this.categoryForm.valid){
 
       if(this.actionName == 'Editar'){
 
-          this.categoryService.updateCategory(this.categoryForm.value).subscribe((resp: any) => {
+        var updatedCategory = {
+          guid: this.editableCategory.guid,
+          name: this.categoryForm.value['name'],
+
+        }
+
+          this.categoryService.updateCategory(updatedCategory).subscribe((resp: any) => {
             this.closeModelEventEmitter.emit(true);
           }, (err: any) => {
             this.snackbarService.showSnackBar('Não foi possível atualizar a categoria, tente novamente','OK ')
