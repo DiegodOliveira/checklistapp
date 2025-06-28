@@ -9,11 +9,12 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { CategoryService } from '../services/category.service';
 import { SnackBarService } from '../services/snack-bar.service';
+import { CommonModule} from '@angular/common';
 
 
 @Component({
   selector: 'app-category',
-  imports: [MatCardModule, MatTableModule, MatButtonModule, RouterLink],
+  imports: [MatCardModule, MatTableModule, MatButtonModule, RouterLink, CommonModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.css'
 })
@@ -26,6 +27,10 @@ export class CategoryComponent implements OnInit {
   constructor(private dialog: MatDialog, private categoryService: CategoryService, private snackBarService: SnackBarService){}
 
   ngOnInit(): void {
+    this.loadAllCategories();
+  }
+
+  private loadAllCategories(){
     this.categoryService.getAllCategories().subscribe(
       (resp: Category[]) => {
         this.dataSource = resp;
@@ -38,6 +43,7 @@ export class CategoryComponent implements OnInit {
     this.dialog.open(CategoryEditComponent, {disableClose: true, data : {editableCategory: inputCategory}}).afterClosed().subscribe(
       resp => {
         if(resp){
+          this.loadAllCategories();
           this.snackBarService.showSnackBar('categoria editada com sucesso', 'OK');
         }
       }
@@ -49,19 +55,29 @@ export class CategoryComponent implements OnInit {
     this.dialog.open(DialogComponent, {disableClose: true, data: {dialoMsg: 'Você tem certerza que gostaria de apagar a categoria?', leftButtonLabel: 'Não', rightButtonLabel: 'Sim'}}).afterClosed().subscribe(
       resp => {
         if(resp){
-          this.snackBarService.showSnackBar('categoria apagada com sucesso', 'OK');
+
+          this.categoryService.deleteCategory(category.guid).subscribe(
+            (resp: any) => {
+              this.loadAllCategories();
+              this.snackBarService.showSnackBar('Categoria apagada com sucesso', 'OK');
+            }, (resp: any) => {
+              this.snackBarService.showSnackBar('Não é possível apagar a categoria, pois está em uso por um item de checklist!', 'OK');
+            }
+          )
+
+          
         }
       }
     )
   };
 
   public createNewCategory(){
-    console.log('create new category clicked')
 
 
     this.dialog.open(CategoryEditComponent, { disableClose: true, data: {actionName: 'Criar'} 
     }).afterClosed().subscribe(resp => {
       if(resp){
+        this.loadAllCategories();
         this.snackBarService.showSnackBar('categoria editada com sucesso', 'OK');
       }
     })
