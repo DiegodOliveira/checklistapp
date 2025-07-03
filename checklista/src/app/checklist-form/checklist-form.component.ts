@@ -6,6 +6,8 @@ import { Category } from '../_models/category';
 import { CategoryService } from '../services/category.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SnackBarService } from '../services/snack-bar.service';
+import { ChecklistService } from '../services/checklist.service';
 
 
 @Component({
@@ -27,7 +29,7 @@ export class ChecklistFormComponent implements OnInit{
 
   public checklistForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService){}
+  constructor(private formBuilder: FormBuilder, private categoryService: CategoryService, private snackBarService: SnackBarService, private checklistService: ChecklistService){}
 
   ngOnInit(): void {
 
@@ -41,7 +43,13 @@ export class ChecklistFormComponent implements OnInit{
     
   }
 
-  private createForm(){
+  public compareCategories(categoryOne: Category, categoryTwo: Category): boolean{
+    return (categoryOne != null && categoryTwo != null) &&
+    (categoryOne.guid == categoryTwo.guid) && 
+    (categoryOne.name == categoryTwo.name);
+  }
+
+  private createForm(){ 
     this.checklistForm = this.formBuilder.group(
       {
         completed: [this.checklistItem != null ? this.checklistItem.completed : false, Validators.required],
@@ -58,7 +66,38 @@ export class ChecklistFormComponent implements OnInit{
   }
 
   public save(){
-    this.formCloseEvent.emit(true);
+
+    if(this.checklistForm.valid){
+      
+    if(this.actionName == 'Editar'){
+
+        var updateableItem = {
+          guid: this.checklistItem.guid,
+          completed: this.checklistForm.value['completed'],
+          description: this.checklistForm.value['description'],
+          deadline: this.checklistForm.value['deadline'],
+          category: this.checklistForm.value['category']
+        }
+
+        this.checklistService.updateAllChecklistItems(updateableItem as any).subscribe(
+          (resp: any) => {
+              this.snackBarService.showSnackBar('Item do checklist atualizado com sucesso', 'Ok');
+              this.formCloseEvent.emit(true)
+          }, (resp: any) => {
+              this.snackBarService.showSnackBar('Erro ao atualizar item do checklist', 'Ok');
+          }
+        );
+
+      } else {
+
+      }
+
+
+        this.formCloseEvent.emit(true);
+    } else {
+      console.log('Invalid form')
+    }
+    
   }
 
   public cancel(){
