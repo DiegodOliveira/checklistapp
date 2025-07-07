@@ -25,31 +25,42 @@ export class ChecklistComponent implements OnInit {
   constructor(private dialog: MatDialog, private checklistService: ChecklistService, private snackBarService: SnackBarService){}
 
   ngOnInit(): void{
+    
+    this.loadAllItems();
 
+  }
 
-    this.checklistService.getAllChecklistItems().subscribe(
+  private loadAllItems(){
+       this.checklistService.getAllChecklistItems().subscribe(
     (resp: ChecklistItem[]) => {
       this.dataSource = resp;
     });
-  
-
   }
 
   public updateCompleteStatus(status: boolean){
     console.log(`status alterado ${status}`)
   }
 
+  public createNewItem(){
+    this.dialog.open(DialogComponent, {
+      disableClose: true, data: {actionName: 'Criar'},
+    }).afterClosed().subscribe( resp => {
+      console.log('Fechando modal de criação');
+
+      if(resp){
+        this.loadAllItems();
+      }
+      
+    })
+  }
+
 
   public updateChecklistItem(checklistItem: ChecklistItem){
-    console.log("atualizando item da checklist");
-
     this.dialog.open(ChecklistEditComponent, {
       disableClose: true, data: { updatableChecklistItem: checklistItem, actionName: 'Editar'},
     }).afterClosed().subscribe( resp => {
-      console.log('Fechando modal de update');
-
       if(resp){
-        this.snackBarService.showSnackBar('Item do checklist editado com sucesso', 'OK')
+        this.loadAllItems();
       }
       
     })
@@ -65,26 +76,18 @@ export class ChecklistComponent implements OnInit {
       console.log('Janela modal confirmar apagar fechada');
 
       if(resp){
-        this.snackBarService.showSnackBar('Item do checklist apagado com sucesso', 'OK')
+
+        this.checklistService.deleteChecklistItems(checklistItem.guid).subscribe(
+          (resp: any) => {
+            this.snackBarService.showSnackBar('Item do checklist apagado com sucesso', 'OK')
+          }, (err: any) => {
+            this.snackBarService.showSnackBar('Um erro ocorreu ao apagar um item do checklist, tente novamente', 'OK')
+          })
+
       }
       
     })
 
-  }
-
-  public createNewItem(){
-    console.log('Criar novo item do checklist clicado');
-
-    this.dialog.open(DialogComponent, {
-      disableClose: true, data: {actionName: 'Criar'},
-    }).afterClosed().subscribe( resp => {
-      console.log('Fechando modal de criação');
-
-      if(resp){
-        this.snackBarService.showSnackBar('Item do checklist criado com sucesso', 'OK')
-      }
-      
-    })
   }
 
 }
