@@ -52,7 +52,7 @@ export class ChecklistFormComponent implements OnInit{
   private createForm(){ 
     this.checklistForm = this.formBuilder.group(
       {
-        completed: [this.checklistItem != null ? this.checklistItem.completed : false, Validators.required],
+        isCompleted: [this.checklistItem != null ? this.checklistItem.isCompleted : false, Validators.required],
         description: [this.checklistItem != null ? this.checklistItem.description: '', Validators.required],
         deadline: [this.checklistItem != null ? this.checklistItem.deadline: new Date(), Validators.required],
         category: [this.checklistItem != null ? this.checklistItem.category: null, Validators.required]
@@ -73,7 +73,7 @@ export class ChecklistFormComponent implements OnInit{
 
         var updateableItem = {
           guid: this.checklistItem.guid,
-          completed: this.checklistForm.value['completed'],
+          isCompleted: this.checklistForm.value['completed'],
           description: this.checklistForm.value['description'],
           deadline: this.checklistForm.value['deadline'],
           category: this.checklistForm.value['category']
