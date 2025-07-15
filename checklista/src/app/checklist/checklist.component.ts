@@ -37,8 +37,16 @@ export class ChecklistComponent implements OnInit {
     });
   }
 
-  public updateCompleteStatus(status: boolean){
-    console.log(`status alterado ${status}`)
+  public updateCompleteStatus(guid: string, status: boolean){
+    
+    this.checklistService.updateCompleteStatus(guid, status).subscribe(
+      (resp: any) => {
+        this.snackBarService.showSnackBar('Item atualizado com sucesso', 'OK')
+      }, err => {
+        this.snackBarService.showSnackBar('Um erro ocorreu ao atualizar o item, tente novamente', 'OK')
+      }
+    );
+
   }
 
   public createNewItem(){
